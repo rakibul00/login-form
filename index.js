@@ -117,80 +117,134 @@
 //     CheckPasswordMatch(Password,Password2)
 
 // })
-const form = document.getElementById('form');
-const username = document.getElementById('username');
-const email = document.getElementById('email');
-const password = document.getElementById('password');
-const password2 = document.getElementById('password2');
+// const form = document.getElementById('form');
+// const username = document.getElementById('username');
+// const email = document.getElementById('email');
+// const password = document.getElementById('password');
+// const password2 = document.getElementById('password2');
 
-//Show input error messages
-function showError(input, message) {
-    const formControl = input.parentElement;
-    formControl.className = 'form-control error';
-    const small = formControl.querySelector('small');
-    small.innerText = message;
-}
+// //Show input error messages
+// function showError(input, message) {
+//     const formControl = input.parentElement;
+//     formControl.className = 'form-control error';
+//     const small = formControl.querySelector('small');
+//     small.innerText = message;
+// }
 
-//show success colour
-function showSucces(input) {
-    const formControl = input.parentElement;
-    formControl.className = 'form-control success';
-}
+// //show success colour
+// function showSucces(input) {
+//     const formControl = input.parentElement;
+//     formControl.className = 'form-control success';
+// }
 
-//check email is valid
-function checkEmail(input) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if(re.test(input.value.trim())) {
-        showSucces(input)
-    }else {
-        showError(input,'Email is not invalid');
-    }
-}
+// //check email is valid
+// function checkEmail(input) {
+//     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//     if(re.test(input.value.trim())) {
+//         showSucces(input)
+//     }else {
+//         showError(input,'Email is not invalid');
+//     }
+// }
 
 
-//checkRequired fields
-function checkRequired(inputArr) {
-    inputArr.forEach(function(input){
-        if(input.value.trim() === ''){
-            showError(input,`${getFieldName(input)} is required`)
-        }else {
-            showSucces(input);
-        }
+// //checkRequired fields
+// function checkRequired(inputArr) {
+//     inputArr.forEach(function(input){
+//         if(input.value.trim() === ''){
+//             showError(input,`${getFieldName(input)} is required`)
+//         }else {
+//             showSucces(input);
+//         }
+//     });
+// }
+
+
+// //check input Length
+// function checkLength(input, min ,max) {
+//     if(input.value.length < min) {
+//         showError(input, `${getFieldName(input)} must be at least ${min} characters`);
+//     }else if(input.value.length > max) {
+//         showError(input, `${getFieldName(input)} must be les than ${max} characters`);
+//     }else {
+//         showSucces(input);
+//     }
+// }
+
+// //get FieldName
+// function getFieldName(input) {
+//     return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+// }
+
+// // check passwords match
+// function checkPasswordMatch(input1, input2) {
+//     if(input1.value !== input2.value) {
+//         showError(input2, 'Passwords do not match');
+//     }
+// }
+
+
+// //Event Listeners
+// form.addEventListener('submit',function(e) {
+//     e.preventDefault();
+
+//     checkRequired([username, email, password, password2]);
+//     checkLength(username,3,15);
+//     checkLength(password,6,25);
+//     checkEmail(email);
+//     checkPasswordMatch(password, password2);
+// });
+
+
+
+// const group = document.querySelector(".group");
+// const output = document.querySelector(".output");
+
+
+// const sizes = ["XS","S","M","L","XL","XXL"];
+
+// group.innerHTML = sizes.map((size)=>`<div>
+//     <input type="radio" id="${size}" value="${size}" name="sizes">
+//  <label for="${size}">${size}</label>
+
+//     </div>`
+// ).join(" ");
+
+
+// const RadioButton = document.querySelectorAll("input");
+
+// for( const radioBtn of RadioButton){
+//     radioBtn.addEventListener("change", ShowOutput)
+// }
+
+
+// function ShowOutput(e){
+//     console.log(e);
+
+//     if(this.checked){
+//         document.querySelector(".output").innerHTML = `Your selected size ${this.value}`
+//     }
+// }
+
+
+
+
+
+
+constbtn = document.querySelector("#btn");
+
+
+btn.addEventListener("click", (e)=>{
+
+    let checkbox = document.querySelectorAll("input[name='color']:checked");
+
+     let values = [];
+
+    checkbox.forEach((checkbox)=>{
+        values.push(checkbox.value);
+        
     });
-}
+    console.log(values)
+    
+})
 
-
-//check input Length
-function checkLength(input, min ,max) {
-    if(input.value.length < min) {
-        showError(input, `${getFieldName(input)} must be at least ${min} characters`);
-    }else if(input.value.length > max) {
-        showError(input, `${getFieldName(input)} must be les than ${max} characters`);
-    }else {
-        showSucces(input);
-    }
-}
-
-//get FieldName
-function getFieldName(input) {
-    return input.id.charAt(0).toUpperCase() + input.id.slice(1);
-}
-
-// check passwords match
-function checkPasswordMatch(input1, input2) {
-    if(input1.value !== input2.value) {
-        showError(input2, 'Passwords do not match');
-    }
-}
-
-
-//Event Listeners
-form.addEventListener('submit',function(e) {
-    e.preventDefault();
-
-    checkRequired([username, email, password, password2]);
-    checkLength(username,3,15);
-    checkLength(password,6,25);
-    checkEmail(email);
-    checkPasswordMatch(password, password2);
-});
